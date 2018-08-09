@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.penta.games.freshtorgesoundboardpro.tabs.Andreas;
 import com.penta.games.freshtorgesoundboardpro.tabs.Clarissa;
 import com.penta.games.freshtorgesoundboardpro.tabs.Joel;
@@ -29,35 +32,45 @@ import com.penta.games.freshtorgesoundboardpro.tabs.Torge;
 public class TabFragment extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
+    int tab_change_counter;
+    public InterstitialAd mInterstitialAd;
+    AdRequest adRequest;
     public static int int_items = 11 ;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        interstitital_ad();
+        mInterstitialAd.loadAd(adRequest);
 
 
-
-        /**
-         *Inflate tab_layout and setup Views.
-         */
             View x =  inflater.inflate(R.layout.tab_layout,null);
             tabLayout = (TabLayout) x.findViewById(R.id.tabs);
             viewPager = (ViewPager) x.findViewById(R.id.viewpager);
-
-        /**
-         *Set an Apater for the View Pager
-         */
-        viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
+            viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
 
 
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageSelected(int position) {
+                tab_change_counter++;
 
+                if(Integer.parseInt(getText(R.string.interstitial_ad_frequency).toString()) == tab_change_counter){
+                    if(mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
 
-        /**
-         * Now , this is a workaround ,
-         * The setupWithViewPager dose't works without the runnable .
-         * Maybe a Support Library Bug .
-         */
+                        AdRequest adRequest = new AdRequest.Builder().build();
+                        mInterstitialAd = new InterstitialAd(getContext());
+                        mInterstitialAd.setAdUnitId(getText(R.string.interstitial_ad_unit_id) + "");
+                        mInterstitialAd.loadAd(adRequest);
+
+                        tab_change_counter = 0;
+                    }
+                }
+            }
+        });
 
         tabLayout.post(new Runnable() {
             @Override
@@ -164,5 +177,30 @@ public class TabFragment extends Fragment {
                 return null;
         }
     }
+    // Interstitial Ad
+    public void interstitital_ad(){
+        adRequest = new AdRequest.Builder().build();
+        mInterstitialAd = new InterstitialAd(getContext());
+        mInterstitialAd.setAdUnitId(getText(R.string.interstitial_ad_unit_id) + "");
+        mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                // Ads loaded
+            }
 
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                // Ads closed
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+                // Ads couldn't loaded
+            }
+        });
+    }
 }
