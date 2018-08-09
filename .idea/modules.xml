@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../PC Daten/PentaGames/Hochgeladene Apps/Freshtorge Soundboard Pro/FrestorgeProVersion/Freshtorge Soundboard.iml" filepath="$PROJECT_DIR$/../../PC Daten/PentaGames/Hochgeladene Apps/Freshtorge Soundboard Pro/FrestorgeProVersion/Freshtorge Soundboard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FrestorgeProVersion.iml" filepath="$PROJECT_DIR$/FrestorgeProVersion.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../PC Daten/PentaGames/Hochgeladene Apps/Freshtorge Soundboard Pro/FrestorgeProVersion/FrestorgeProVersion-New.iml" filepath="$PROJECT_DIR$/../../PC Daten/PentaGames/Hochgeladene Apps/Freshtorge Soundboard Pro/FrestorgeProVersion/FrestorgeProVersion-New.iml" />
       <module fileurl="file://$PROJECT_DIR$/FrestorgeSoundboard.iml" filepath="$PROJECT_DIR$/FrestorgeSoundboard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

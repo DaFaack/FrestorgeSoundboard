@@ -1,4 +1,4 @@
-package com.penta.games.freshtorgesoundboardpro;
+package com.greenwoods.productions.freshtorgesoundboard;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
