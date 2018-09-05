@@ -1,9 +1,8 @@
 package com.greenwoods.productions.freshtorgesoundboard;
-
+//stand: 5.9.
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.NavigationView;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         isTesting=false;
 
-        final File FILES_PATH = new File(Environment.getExternalStorageDirectory(), "Android/data/com.penta.games.freshtorgesoundboard/files");
+        final File FILES_PATH = new File(Environment.getExternalStorageDirectory(), "Android/data/com.greenwoods.productions.freshtorgesoundboard/files");
 
 
         if (Environment.MEDIA_MOUNTED.equals(
